@@ -3,13 +3,13 @@ package com.murase.bingo.model.game
 import com.murase.bingo.model.game.card.BingoCard
 import com.murase.bingo.random
 
-// ビンゴカード作って、指定された場所の番号を教える
+// ビンゴカード作る
 class CreateBingoCard: CreatableBingoCard {
     companion object {
         fun getInstance() = CreateBingoCard()
     }
 
-    private val numberSetsOfBingoCard = listOf(
+    private val mainBingoCard = listOf(
         BingoCard(-1, -1, false), // ダミーデータ
         BingoCard(1, random(), false),
         BingoCard(2, random(), false),
@@ -22,11 +22,11 @@ class CreateBingoCard: CreatableBingoCard {
         BingoCard(9, random(), false)
     )
 
-    override fun getBingoNumberList(): List<BingoCard> = numberSetsOfBingoCard
+    override fun getMainBingoCard(): List<BingoCard> = mainBingoCard
 
     override fun getNumberOnBingoCard(position: Int): Int {
         return if ( position in 1..9 ) {
-            numberSetsOfBingoCard[position].number
+            mainBingoCard[position].number
         } else {
             -1
         }
@@ -34,13 +34,15 @@ class CreateBingoCard: CreatableBingoCard {
 }
 
 // ガラポンをする
-class LotteryNumber: JackpotLotteryNumber {
+class LotteryJackpot: HitLotteryJackpot {
     companion object {
-        fun getInstance() = LotteryNumber()
+        fun getInstance() = LotteryJackpot()
     }
-    override fun getLotteryNumber(): Int = random()
+
+    override fun getLotteryJackpot(): Int = random()
 }
 
+/*
 // ガラポンの結果を教える
 class CheckBingoResult: CheckableBingoResult {
     companion object {
@@ -54,10 +56,13 @@ class CheckBingoResult: CheckableBingoResult {
     override fun getBingoResult(): Boolean {
         val bingoCard: CreatableBingoCard = CreateBingoCard.getInstance()
 
+*/
 /*
         val result = TODO("ビンゴが決まったか否かを判定した結果を返す")
         return result
-*/
+*//*
+
         return true
     }
 }
+*/

@@ -207,7 +207,7 @@
                   </Label>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="select_random_number" alignment="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#roundGaraPon" prefHeight="71.0" prefWidth="149.0" text="&gt;&gt;ガラポン&lt;&lt;">
+                        <Button fx:id="select_random_number" alignment="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#garaPon" prefHeight="71.0" prefWidth="149.0" text="&gt;&gt;ガラポン&lt;&lt;">
                            <font>
                               <Font name="Apple Braille" size="20.0" />
                            </font>

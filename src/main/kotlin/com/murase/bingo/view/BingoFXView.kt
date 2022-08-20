@@ -1,6 +1,7 @@
 package com.murase.bingo.view
 
 import com.murase.bingo.*
+import com.murase.bingo.control.ManageLotteryNumber
 import com.murase.bingo.model.check.*
 import com.murase.bingo.model.game.*
 import javafx.beans.property.SimpleStringProperty
@@ -11,9 +12,11 @@ import tornadofx.*
 import kotlin.system.exitProcess
 
 class BingoFXView: View(WINDOW_TITLE) {
-    private val createBingoCard:  CreatableBingoCard   = CreateBingoCard.getInstance()
-    private val lottery:          JackpotLotteryNumber = LotteryNumber.getInstance()
-    private val checkBingoResult: CheckableBingoResult = CheckBingoResult.getInstance()
+    private val createBingoCard: CreatableBingoCard = CreateBingoCard.getInstance()
+    private val lotteryJackpot:  HitLotteryJackpot  = LotteryJackpot.getInstance()
+    private val checkBingo:      CheckableBingo     = CheckBingo.getInstance()
+
+    private val lotteryJackpotManager = ManageLotteryNumber()
 
     override val root: VBox by fxml(FXML_VIEW_RESOURCE)
 
@@ -58,7 +61,7 @@ class BingoFXView: View(WINDOW_TITLE) {
 
     // 出目および結果表示エリアを論理的に初期化
     private val resultSelectedNumberValue = SimpleStringProperty()
-    private val bingoResultValue = SimpleStringProperty()
+    private val bingoResultValue          = SimpleStringProperty()
 
     // ビンゴの準備する
     private fun pushSelectNumberButton() {
@@ -74,30 +77,44 @@ class BingoFXView: View(WINDOW_TITLE) {
         bingoAreaI2J2Value.value = createBingoCard.getNumberOnBingoCard(9).toString()
     }
 
-    // ガラポンする
+    // ガラポンボタン押す
     @FXML
-    fun roundGaraPon() {
+    fun garaPon() {
 
         // ガラポン番号の取得および、出目の表示
-        val lotteryNumber: Int = lottery.getLotteryNumber()
+        val lotteryNumber: Int = lotteryJackpot.getLotteryJackpot()
         resultSelectedNumberValue.value = lotteryNumber.toString()
+        lotteryJackpotManager.setLotteryNumber(lotteryNumber)
 
         // 出目の一致を判定するためのオブジェクト取得および、一致した際の位置一覧を取得
-        val checkJackpot: CheckableJackPot = CheckPot(lotteryNumber, createBingoCard)
+        val checkJackpot: CheckableJackpot = CheckJackpot(lotteryNumber, createBingoCard)
         val matchPositionArray: Array<Int> = checkJackpot.whereNumberExists()
 
-        // 先ほど取得した位置一覧と、先に作成したImageViewの場所基準の一覧を与える
-        val checkMatchPoint: CheckableMatchPoint =
-            CheckMatchPoint(matchPositionArray)
-        // 赤丸をつける場所一覧を取得
-        val positionArray: Array<String> = checkMatchPoint.matchPoint()
+        // デバッグ
+        for ( matchPosition in matchPositionArray ) println(matchPosition)
+
+        // エフェクトつける
+
+        // ビンゴかチェックする
+        checkBingo
+        val isBingo = checkBingo.isBingo()
+
+
+        // 先ほど取得した位置一覧を与える
+//        val checkMatchPoint: CheckableMatchPoint = CheckMatchPoint(matchPositionArray)
+
+
+
+
+        // 文字エフェクトをつける場所一覧を取得
+  //      val positionArray: Array<String> = checkMatchPoint.matchPoint()
         // 一致したら、赤丸つける
 
-        val it: Iterator<String> = positionArray.iterator()
-        while ( it.hasNext() ) {
+    //    val it: Iterator<String> = positionArray.iterator()
+      //  while ( it.hasNext() ) {
             // 赤丸つける位置がわかる
            // it.next() = Image(CIRCLE_MARKER_IMAGE)
-        }
+       // }
 
         /*
                 val checkPot: CheckableJackPot = CheckPot(random())
@@ -106,7 +123,7 @@ class BingoFXView: View(WINDOW_TITLE) {
 
     }
 
-    // 終わりボタンおす
+    // おわりボタン押す
     @FXML
     fun endBingoGame() {
         exitProcess(0)

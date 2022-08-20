@@ -5,7 +5,10 @@ import com.murase.bingo.model.game.CreatableBingoCard
 class BingoSet(
     private val bingoCard: CreatableBingoCard
 ) {
-    private val bingoNum = bingoCard.getBingoNumberList()
+    companion object {
+        fun getInstance(bingoCard: CreatableBingoCard) = BingoSet(bingoCard)
+    }
+    private val bingoNum = bingoCard.getMainBingoCard()
 
     val bingoPatternSet: Map<Int, List<Int>> = mapOf(
         1 to listOf(bingoNum[1].number, bingoNum[2].number, bingoNum[3].number),

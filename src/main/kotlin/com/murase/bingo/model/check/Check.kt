@@ -1,22 +1,23 @@
 package com.murase.bingo.model.check
 
 import com.murase.bingo.model.game.CreatableBingoCard
-import javafx.scene.image.ImageView
+import com.murase.bingo.model.game.card.BingoCard
+import com.murase.bingo.util.BingoSet
 
 /*
 * ビューの方で出目を渡してくれる。
 * その出目が一致するか否か判断する。
 * 一致した場合は、一致した場所リストを返す。
 * */
-class CheckPot(
-    private val jackPot: Int,
+class CheckJackpot(
+    private val jackpotNumber: Int,
     private val bingoCard: CreatableBingoCard
-): CheckableJackPot {
+): CheckableJackpot {
     override fun whereNumberExists(): Array<Int> {
         var positions: Array<Int> = arrayOf()
         for ( i in (1..9) ) {
-           if ( bingoCard.getNumberOnBingoCard(i) == jackPot ) {
-               bingoCard.getBingoNumberList()[i].hit = true
+           if ( bingoCard.getNumberOnBingoCard(i) == jackpotNumber ) {
+               bingoCard.getMainBingoCard()[i].hit = true
                positions = arrayOf(i)
            }
         }
@@ -24,6 +25,7 @@ class CheckPot(
     }
 }
 
+/*
 // 赤丸つける場所を通知
 class CheckMatchPoint(
     private val matchPositionArray: Array<Int>
@@ -34,16 +36,19 @@ class CheckMatchPoint(
 
 //        for ( i in markPositionMap ) println(i.value.)
 
+*/
 /*
         while ( it.hasNext() ) {
             val next: Int = it.next()
             if ( next > 0 )
                 positionArray = arrayOf( markPositionMap.getValue(next).id )
         }
-*/
+*//*
+
         return positionArray
     }
 }
+*/
 
 /*
 * 出目に対してビンゴが発生するかを、
@@ -55,6 +60,9 @@ class CheckBingo: CheckableBingo {
     }
 
     override fun isBingo(): Boolean {
+        val isBingo = false
+
+
         return false
     }
 
