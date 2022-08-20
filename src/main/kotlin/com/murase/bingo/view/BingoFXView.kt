@@ -107,6 +107,14 @@ class BingoFXView: View(WINDOW_TITLE) {
             //bingoResult.style = "-fx-background-color: #BFFFFE; -fx-font-size: 50px;"
         } else {
             bingoResultValue.value = NO
+            bingoAreaI0J0.style = "-fx-background-color: #2f6f10;"
+            bingoAreaI1J0.style = "-fx-background-color: #2f6f10;"
+            bingoAreaI2J0.style = "-fx-background-color: #2f6f10;"
+            bingoAreaI0J2.style = "-fx-background-color: #2f6f10;"
+            bingoAreaI1J2.style = "-fx-background-color: #2f6f10;"
+            bingoAreaI2J2.style = "-fx-background-color: #2f6f10;"
+            bingoAreaI0J1.style = "-fx-background-color: #2f6f10;"
+            bingoAreaI2J1.style = "-fx-background-color: #2f6f10;"
         }
     }
 
