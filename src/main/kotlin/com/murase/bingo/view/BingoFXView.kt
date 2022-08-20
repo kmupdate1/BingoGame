@@ -6,9 +6,7 @@ import com.murase.bingo.model.game.*
 import javafx.beans.property.SimpleStringProperty
 import javafx.fxml.FXML
 import javafx.scene.control.Label
-import javafx.scene.image.Image
-import javafx.scene.image.ImageView
-import javafx.scene.layout.Pane
+import javafx.scene.layout.VBox
 import tornadofx.*
 import kotlin.system.exitProcess
 
@@ -17,7 +15,7 @@ class BingoFXView: View(WINDOW_TITLE) {
     private val lottery:          JackpotLotteryNumber = LotteryNumber.getInstance()
     private val checkBingoResult: CheckableBingoResult = CheckBingoResult.getInstance()
 
-    override val root: Pane by fxml(FXML_VIEW_RESOURCE)
+    override val root: VBox by fxml(FXML_VIEW_RESOURCE)
 
     //　チェックボックスがオフの時のみを考えて実装する
 
@@ -32,29 +30,6 @@ class BingoFXView: View(WINDOW_TITLE) {
     private val bingoAreaI2J0: Label by fxid(BINGO_AREA_I2J0)
     private val bingoAreaI2J1: Label by fxid(BINGO_AREA_I2J1)
     private val bingoAreaI2J2: Label by fxid(BINGO_AREA_I2J2)
-
-    // ビンゴカードエフェクトエリア
-    private val bingoAreaEffectI0J0: ImageView by fxid(BINGO_AREA_EFFECT_I0J0)
-    private val bingoAreaEffectI0J1: ImageView by fxid(BINGO_AREA_EFFECT_I0J1)
-    private val bingoAreaEffectI0J2: ImageView by fxid(BINGO_AREA_EFFECT_I0J2)
-    private val bingoAreaEffectI1J0: ImageView by fxid(BINGO_AREA_EFFECT_I1J0)
-    private val bingoAreaEffectI1J1: ImageView by fxid(BINGO_AREA_EFFECT_I1J1)
-    private val bingoAreaEffectI1J2: ImageView by fxid(BINGO_AREA_EFFECT_I1J2)
-    private val bingoAreaEffectI2J0: ImageView by fxid(BINGO_AREA_EFFECT_I2J0)
-    private val bingoAreaEffectI2J1: ImageView by fxid(BINGO_AREA_EFFECT_I2J1)
-    private val bingoAreaEffectI2J2: ImageView by fxid(BINGO_AREA_EFFECT_I2J2)
-
-    private val markPositionMap: Map<Int, ImageView> = mapOf(
-        1 to bingoAreaEffectI0J0,
-        2 to bingoAreaEffectI0J1,
-        3 to bingoAreaEffectI0J2,
-        4 to bingoAreaEffectI1J0,
-        5 to bingoAreaEffectI1J1,
-        6 to bingoAreaEffectI1J2,
-        7 to bingoAreaEffectI2J0,
-        8 to bingoAreaEffectI2J1,
-        9 to bingoAreaEffectI2J2
-    )
 
 /*
     // ガラポン回転ボタン
@@ -113,7 +88,7 @@ class BingoFXView: View(WINDOW_TITLE) {
 
         // 先ほど取得した位置一覧と、先に作成したImageViewの場所基準の一覧を与える
         val checkMatchPoint: CheckableMatchPoint =
-            CheckMatchPoint(markPositionMap, matchPositionArray)
+            CheckMatchPoint(matchPositionArray)
         // 赤丸をつける場所一覧を取得
         val positionArray: Array<String> = checkMatchPoint.matchPoint()
         // 一致したら、赤丸つける

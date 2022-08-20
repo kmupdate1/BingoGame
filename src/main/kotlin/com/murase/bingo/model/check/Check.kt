@@ -26,7 +26,6 @@ class CheckPot(
 
 // 赤丸つける場所を通知
 class CheckMatchPoint(
-    private val markPositionMap: Map<Int, ImageView>,
     private val matchPositionArray: Array<Int>
 ): CheckableMatchPoint {
     override fun matchPoint(): Array<String> {
@@ -35,11 +34,13 @@ class CheckMatchPoint(
 
 //        for ( i in markPositionMap ) println(i.value.)
 
+/*
         while ( it.hasNext() ) {
             val next: Int = it.next()
             if ( next > 0 )
                 positionArray = arrayOf( markPositionMap.getValue(next).id )
         }
+*/
         return positionArray
     }
 }
