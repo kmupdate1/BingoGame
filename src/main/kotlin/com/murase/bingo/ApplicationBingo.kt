@@ -4,7 +4,6 @@ import com.murase.bingo.view.BingoFXView
 import tornadofx.*
 
 const val WINDOW_TITLE = "BINGO GAME!"
-const val BINGO_VIEW = "BingoFXView"
 
 // ビンゴ数字表示エリア
 const val BINGO_AREA_I0J0 = "bingo_area_i0j0"
@@ -33,6 +32,9 @@ const val FXML_VIEW_RESOURCE = "/BingoFXView.fxml"
 // ビンゴ表示に使用する数字の範囲[0 - 99]
 const val MIN = 0
 const val MAX = 99
+
+const val YES = "YES"
+const val NO  = "NO"
 
 fun random(): Int = (MIN..MAX).random()
 

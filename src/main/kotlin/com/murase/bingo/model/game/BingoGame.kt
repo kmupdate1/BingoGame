@@ -14,11 +14,3 @@ interface CreatableBingoCard {
 interface HitLotteryJackpot {
     fun getLotteryJackpot(): Int
 }
-
-/*
-// ガラポンの結果、ヒット判定を知る
-interface CheckableBingoResult {
-    fun isExistsNumber(): Boolean
-    fun getBingoResult(): Boolean
-}
-*/

@@ -41,28 +41,3 @@ class LotteryJackpot: HitLotteryJackpot {
 
     override fun getLotteryJackpot(): Int = random()
 }
-
-/*
-// ガラポンの結果を教える
-class CheckBingoResult: CheckableBingoResult {
-    companion object {
-        fun getInstance() = CheckBingoResult()
-    }
-
-    override fun isExistsNumber(): Boolean {
-        return true
-    }
-
-    override fun getBingoResult(): Boolean {
-        val bingoCard: CreatableBingoCard = CreateBingoCard.getInstance()
-
-*/
-/*
-        val result = TODO("ビンゴが決まったか否かを判定した結果を返す")
-        return result
-*//*
-
-        return true
-    }
-}
-*/

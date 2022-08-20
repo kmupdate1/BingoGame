@@ -16,7 +16,6 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label alignment="BOTTOM_CENTER" prefHeight="62.0" prefWidth="609.0" text="目指せビンゴ！" textAlignment="CENTER" textFill="#91b52d">
@@ -38,7 +37,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label fx:id="bingo_area_i0j0" alignment="CENTER" prefHeight="120.0" prefWidth="119.0">
+                  <Label fx:id="bingo_area_i0j0" alignment="CENTER" prefHeight="140.0" prefWidth="120.0" textAlignment="CENTER">
                      <GridPane.margin>
                         <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                      </GridPane.margin>
@@ -52,7 +51,7 @@
                         <SepiaTone />
                      </effect>
                   </Label>
-                  <Label fx:id="bingo_area_i0j1" alignment="CENTER" prefHeight="115.0" prefWidth="118.0" GridPane.columnIndex="1">
+                  <Label fx:id="bingo_area_i0j1" alignment="CENTER" prefHeight="140.0" prefWidth="120.0" textAlignment="CENTER" GridPane.columnIndex="1">
                      <effect>
                         <SepiaTone level="0.28" />
                      </effect>
@@ -69,7 +68,7 @@
                         <Font name="Apple Braille" size="50.0" />
                      </font>
                   </Label>
-                  <Label fx:id="bingo_area_i0j2" alignment="CENTER" prefHeight="112.0" prefWidth="118.0" GridPane.columnIndex="2">
+                  <Label fx:id="bingo_area_i0j2" alignment="CENTER" prefHeight="140.0" prefWidth="120.0" textAlignment="CENTER" GridPane.columnIndex="2">
                      <effect>
                         <SepiaTone level="0.28" />
                      </effect>
@@ -86,7 +85,7 @@
                         <Font name="Apple Braille" size="50.0" />
                      </font>
                   </Label>
-                  <Label fx:id="bingo_area_i1j0" alignment="CENTER" prefHeight="111.0" prefWidth="119.0" GridPane.rowIndex="1">
+                  <Label fx:id="bingo_area_i1j0" alignment="CENTER" prefHeight="140.0" prefWidth="120.0" textAlignment="CENTER" GridPane.rowIndex="1">
                      <effect>
                         <SepiaTone level="0.28" />
                      </effect>
@@ -103,7 +102,7 @@
                         <Font name="Apple Braille" size="50.0" />
                      </font>
                   </Label>
-                  <Label fx:id="bingo_area_i1j1" alignment="CENTER" prefHeight="143.0" prefWidth="118.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Label fx:id="bingo_area_i1j1" alignment="CENTER" prefHeight="140.0" prefWidth="120.0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <effect>
                         <SepiaTone level="0.28" />
                      </effect>
@@ -120,7 +119,7 @@
                         <Font name="Apple Braille" size="50.0" />
                      </font>
                   </Label>
-                  <Label fx:id="bingo_area_i1j2" alignment="CENTER" prefHeight="117.0" prefWidth="118.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                  <Label fx:id="bingo_area_i1j2" alignment="CENTER" prefHeight="140.0" prefWidth="120.0" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <effect>
                         <SepiaTone level="0.28" />
                      </effect>
@@ -137,7 +136,7 @@
                         <Font name="Apple Braille" size="50.0" />
                      </font>
                   </Label>
-                  <Label fx:id="bingo_area_i2j0" alignment="CENTER" prefHeight="113.0" prefWidth="119.0" GridPane.rowIndex="2">
+                  <Label fx:id="bingo_area_i2j0" alignment="CENTER" prefHeight="140.0" prefWidth="120.0" textAlignment="CENTER" GridPane.rowIndex="2">
                      <effect>
                         <SepiaTone level="0.28" />
                      </effect>
@@ -154,7 +153,7 @@
                         <Font name="Apple Braille" size="50.0" />
                      </font>
                   </Label>
-                  <Label fx:id="bingo_area_i2j1" alignment="CENTER" prefHeight="124.0" prefWidth="118.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <Label fx:id="bingo_area_i2j1" alignment="CENTER" prefHeight="140.0" prefWidth="120.0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <effect>
                         <SepiaTone level="0.28" />
                      </effect>
@@ -171,7 +170,7 @@
                         <Font name="Apple Braille" size="50.0" />
                      </font>
                   </Label>
-                  <Label fx:id="bingo_area_i2j2" alignment="CENTER" prefHeight="116.0" prefWidth="118.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                  <Label fx:id="bingo_area_i2j2" alignment="CENTER" prefHeight="140.0" prefWidth="120.0" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <effect>
                         <SepiaTone level="0.28" />
                      </effect>
@@ -242,9 +241,9 @@
             </VBox>
          </children>
       </HBox>
-      <Label fx:id="bingo_result" alignment="CENTER" prefHeight="74.0" prefWidth="609.0">
+      <Label fx:id="bingo_result" alignment="CENTER" prefHeight="74.0" prefWidth="609.0" textAlignment="CENTER">
          <font>
-            <Font name="System Italic" size="42.0" />
+            <Font name="System Italic" size="50.0" />
          </font>
       </Label>
    </children>

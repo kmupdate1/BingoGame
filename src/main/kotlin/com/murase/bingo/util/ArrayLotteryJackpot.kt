@@ -8,4 +8,6 @@ class ArrayLotteryJackpot {
             arrayLotteryJackpotNum.add(number)
         }
     }
+
+    fun getSize() = arrayLotteryJackpotNum.size
 }

@@ -1,8 +1,9 @@
 package com.murase.bingo.view
 
 import com.murase.bingo.*
-import com.murase.bingo.control.ManageLotteryNumber
+import com.murase.bingo.manage.ManageLotteryNumber
 import com.murase.bingo.model.check.*
+import com.murase.bingo.model.effect.Effect
 import com.murase.bingo.model.game.*
 import javafx.beans.property.SimpleStringProperty
 import javafx.fxml.FXML
@@ -12,11 +13,13 @@ import tornadofx.*
 import kotlin.system.exitProcess
 
 class BingoFXView: View(WINDOW_TITLE) {
+    private val lotteryJackpotManager = ManageLotteryNumber()
+
     private val createBingoCard: CreatableBingoCard = CreateBingoCard.getInstance()
     private val lotteryJackpot:  HitLotteryJackpot  = LotteryJackpot.getInstance()
-    private val checkBingo:      CheckableBingo     = CheckBingo.getInstance()
+    private val checkBingo:      CheckableBingo     = CheckBingo.getInstance(lotteryJackpotManager)
 
-    private val lotteryJackpotManager = ManageLotteryNumber()
+    private val effectNumber = Effect.getInstance()
 
     override val root: VBox by fxml(FXML_VIEW_RESOURCE)
 
@@ -83,44 +86,28 @@ class BingoFXView: View(WINDOW_TITLE) {
 
         // ガラポン番号の取得および、出目の表示
         val lotteryNumber: Int = lotteryJackpot.getLotteryJackpot()
-        resultSelectedNumberValue.value = lotteryNumber.toString()
-        lotteryJackpotManager.setLotteryNumber(lotteryNumber)
+        resultSelectedNumberValue.value = "Jackpot : $lotteryNumber"
 
         // 出目の一致を判定するためのオブジェクト取得および、一致した際の位置一覧を取得
         val checkJackpot: CheckableJackpot = CheckJackpot(lotteryNumber, createBingoCard)
         val matchPositionArray: Array<Int> = checkJackpot.whereNumberExists()
 
-        // デバッグ
-        for ( matchPosition in matchPositionArray ) println(matchPosition)
+        for ( matchPosition in matchPositionArray ) {
+            lotteryJackpotManager.setLotteryNumber(matchPosition)
 
-        // エフェクトつける
+            // エフェクトつける
+
+            //effectNumber.setMatchPosition(matchPosition)
+        }
 
         // ビンゴかチェックする
-        checkBingo
         val isBingo = checkBingo.isBingo()
-
-
-        // 先ほど取得した位置一覧を与える
-//        val checkMatchPoint: CheckableMatchPoint = CheckMatchPoint(matchPositionArray)
-
-
-
-
-        // 文字エフェクトをつける場所一覧を取得
-  //      val positionArray: Array<String> = checkMatchPoint.matchPoint()
-        // 一致したら、赤丸つける
-
-    //    val it: Iterator<String> = positionArray.iterator()
-      //  while ( it.hasNext() ) {
-            // 赤丸つける位置がわかる
-           // it.next() = Image(CIRCLE_MARKER_IMAGE)
-       // }
-
-        /*
-                val checkPot: CheckableJackPot = CheckPot(random())
-                val checkBing: CheckableBingo = CheckBingo.getInstance()
-        */
-
+        if ( isBingo ) {
+            bingoResultValue.value = YES
+            //bingoResult.style = "-fx-background-color: #BFFFFE; -fx-font-size: 50px;"
+        } else {
+            bingoResultValue.value = NO
+        }
     }
 
     // おわりボタン押す

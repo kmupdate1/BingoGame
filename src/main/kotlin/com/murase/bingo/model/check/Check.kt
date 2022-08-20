@@ -1,8 +1,7 @@
 package com.murase.bingo.model.check
 
+import com.murase.bingo.manage.ManageLotteryNumber
 import com.murase.bingo.model.game.CreatableBingoCard
-import com.murase.bingo.model.game.card.BingoCard
-import com.murase.bingo.util.BingoSet
 
 /*
 * ビューの方で出目を渡してくれる。
@@ -26,57 +25,22 @@ class CheckJackpot(
 }
 
 /*
-// 赤丸つける場所を通知
-class CheckMatchPoint(
-    private val matchPositionArray: Array<Int>
-): CheckableMatchPoint {
-    override fun matchPoint(): Array<String> {
-        var positionArray: Array<String> = arrayOf()
-        val it: Iterator<Int> = matchPositionArray.iterator()
-
-//        for ( i in markPositionMap ) println(i.value.)
-
-*/
-/*
-        while ( it.hasNext() ) {
-            val next: Int = it.next()
-            if ( next > 0 )
-                positionArray = arrayOf( markPositionMap.getValue(next).id )
-        }
-*//*
-
-        return positionArray
-    }
-}
-*/
-
-/*
 * 出目に対してビンゴが発生するかを、
 * 毎回の出目毎にチェックする。
 * */
-class CheckBingo: CheckableBingo {
+class CheckBingo(
+    private val manager: ManageLotteryNumber
+): CheckableBingo {
     companion object {
-        fun getInstance() = CheckBingo()
+        fun getInstance(manager: ManageLotteryNumber) = CheckBingo(manager)
     }
 
     override fun isBingo(): Boolean {
-        val isBingo = false
-
-
-        return false
-    }
-
-    /*
-        private val bingoCard: CreatableBingoCard = CreateBingoCard.getInstance()
-        private val bingoSet = BingoSet().bingoPatternSet
-
-        override fun isBingo(): Boolean {
-            val it = bingoSet.iterator()
-            while ( it.hasNext() ) {
-
-            }
-            return true
+        var isBingo = false
+        val managerList = manager.getManageList()
+        for ( array in managerList ) {
+            if ( array.getSize() > 2 ) isBingo = true
         }
-    */
-
+        return isBingo
+    }
 }
