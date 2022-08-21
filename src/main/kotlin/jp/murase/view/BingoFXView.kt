@@ -1,9 +1,9 @@
-package com.murase.view
+package jp.murase.view
 
-import com.murase.*
-import com.murase.manage.ManageLotteryNumber
-import com.murase.model.check.*
-import com.murase.model.game.*
+import jp.murase.*
+import jp.murase.manage.ManageLotteryNumber
+import jp.murase.model.check.*
+import jp.murase.model.game.*
 import javafx.beans.property.SimpleStringProperty
 import javafx.fxml.FXML
 import javafx.geometry.Insets

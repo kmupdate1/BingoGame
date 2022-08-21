@@ -1,4 +1,4 @@
-package com.murase.model.game.card
+package jp.murase.model.game.card
 
 data class BingoCard(
     val position: Int,

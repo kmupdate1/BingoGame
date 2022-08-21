@@ -1,6 +1,6 @@
-package com.murase.manage
+package jp.murase.manage
 
-import com.murase.util.ArrayLotteryJackpot
+import jp.murase.util.ArrayLotteryJackpot
 
 class ManageLotteryNumber {
     private val a = ArrayLotteryJackpot()

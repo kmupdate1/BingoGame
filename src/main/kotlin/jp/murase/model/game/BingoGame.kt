@@ -1,6 +1,6 @@
-package com.murase.model.game
+package jp.murase.model.game
 
-import com.murase.model.game.card.BingoCard
+import jp.murase.model.game.card.BingoCard
 
 // ビンゴカード作る
 interface CreatableBingoCard {

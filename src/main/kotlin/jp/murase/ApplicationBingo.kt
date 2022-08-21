@@ -1,6 +1,6 @@
-package com.murase
+package jp.murase
 
-import com.murase.view.BingoFXView
+import jp.murase.view.BingoFXView
 import tornadofx.*
 
 const val WINDOW_TITLE = "BINGO GAME!"

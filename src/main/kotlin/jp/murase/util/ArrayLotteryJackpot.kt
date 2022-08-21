@@ -1,4 +1,4 @@
-package com.murase.util
+package jp.murase.util
 
 class ArrayLotteryJackpot {
     private val arrayLotteryJackpotNum: ArrayList<Int> = arrayListOf()

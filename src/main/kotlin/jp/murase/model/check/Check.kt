@@ -1,7 +1,7 @@
-package com.murase.model.check
+package jp.murase.model.check
 
-import com.murase.manage.ManageLotteryNumber
-import com.murase.model.game.CreatableBingoCard
+import jp.murase.manage.ManageLotteryNumber
+import jp.murase.model.game.CreatableBingoCard
 
 /*
 * ビューの方で出目を渡してくれる。
