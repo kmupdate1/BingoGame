@@ -1,6 +1,6 @@
 package com.murase.view
 
-import com.murase.bingo.*
+import com.murase.*
 import com.murase.manage.ManageLotteryNumber
 import com.murase.model.check.*
 import com.murase.model.game.*

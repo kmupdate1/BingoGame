@@ -1,7 +1,7 @@
 package com.murase.model.game
 
 import com.murase.model.game.card.BingoCard
-import com.murase.bingo.random
+import com.murase.random
 
 // ビンゴカード作る
 class CreateBingoCard: CreatableBingoCard {
