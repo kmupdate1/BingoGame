@@ -1,4 +1,4 @@
-package com.murase.bingo.model.check
+package com.murase.model.check
 
 // 出目の一致調査
 interface CheckableJackpot {

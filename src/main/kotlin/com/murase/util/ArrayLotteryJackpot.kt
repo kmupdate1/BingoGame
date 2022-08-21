@@ -1,4 +1,4 @@
-package com.murase.bingo.util
+package com.murase.util
 
 class ArrayLotteryJackpot {
     private val arrayLotteryJackpotNum: ArrayList<Int> = arrayListOf()

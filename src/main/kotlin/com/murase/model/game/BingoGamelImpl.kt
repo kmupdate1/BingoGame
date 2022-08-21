@@ -1,6 +1,6 @@
-package com.murase.bingo.model.game
+package com.murase.model.game
 
-import com.murase.bingo.model.game.card.BingoCard
+import com.murase.model.game.card.BingoCard
 import com.murase.bingo.random
 
 // ビンゴカード作る

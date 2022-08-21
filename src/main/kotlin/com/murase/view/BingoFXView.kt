@@ -1,9 +1,9 @@
-package com.murase.bingo.view
+package com.murase.view
 
 import com.murase.bingo.*
-import com.murase.bingo.manage.ManageLotteryNumber
-import com.murase.bingo.model.check.*
-import com.murase.bingo.model.game.*
+import com.murase.manage.ManageLotteryNumber
+import com.murase.model.check.*
+import com.murase.model.game.*
 import javafx.beans.property.SimpleStringProperty
 import javafx.fxml.FXML
 import javafx.geometry.Insets
@@ -22,8 +22,6 @@ class BingoFXView: View(WINDOW_TITLE) {
     private val createBingoCard: CreatableBingoCard = CreateBingoCard.getInstance()
     private val lotteryJackpot:  HitLotteryJackpot  = LotteryJackpot.getInstance()
     private val checkBingo:      CheckableBingo     = CheckBingo.getInstance(lotteryJackpotManager)
-
-    //private val effectNumber = Effect.getInstance()
 
     override val root: VBox by fxml(FXML_VIEW_RESOURCE)
 
@@ -87,33 +85,12 @@ class BingoFXView: View(WINDOW_TITLE) {
             lotteryJackpotManager.setLotteryNumber(matchPosition)
 
             // エフェクトつける
-            numberAreaEffect(matchPosition, Color.AQUA)
-/*
-            val bingoAreaObj =
-                listBingoAreaObj.getBingoAreaObj(matchPosition).id
-            println(bingoAreaObj)
-*/
-
+            bingoAreaEffect(matchPosition)
         }
 
         // ビンゴかチェックする
         val isBingo = checkBingo.isBingo()
-        if ( isBingo ) {
-            bingoResultValue.value = YES
-            //bingoResult.style = "-fx-background-color: #BFFFFE; -fx-font-size: 50px;"
-        } else {
-            bingoResultValue.value = NO
-/*
-            bingoAreaI0J0.style = "-fx-background-color: #f4c1f7;"
-            bingoAreaI1J0.style = "-fx-background-color: #f4c1f7;"
-            bingoAreaI2J0.style = "-fx-background-color: #f4c1f7;"
-            bingoAreaI0J2.style = "-fx-background-color: #f4c1f7;"
-            bingoAreaI1J2.style = "-fx-background-color: #f4c1f7;"
-            bingoAreaI2J2.style = "-fx-background-color: #f4c1f7;"
-            bingoAreaI0J1.style = "-fx-background-color: #f4c1f7;"
-            bingoAreaI2J1.style = "-fx-background-color: #f4c1f7;"
-*/
-        }
+        if ( isBingo ) bingoResultValue.value = YES else bingoResultValue.value = NO
     }
 
     // おわりボタン押す
@@ -122,31 +99,13 @@ class BingoFXView: View(WINDOW_TITLE) {
         exitProcess(0)
     }
 
-/*
-    // ビンゴエリアのオブジェクトリスト用意
-    private val listBingoAreaObj =
-        ListBingoAreaObj.getInstance(
-            mapOf(
-                1 to bingoAreaI0J0,
-                2 to bingoAreaI0J1,
-                3 to bingoAreaI0J2,
-                4 to bingoAreaI1J0,
-                5 to bingoAreaI1J1,
-                6 to bingoAreaI1J2,
-                7 to bingoAreaI2J0,
-                8 to bingoAreaI2J1,
-                9 to bingoAreaI2J2
-            )
-        )
-*/
-
     // ビンゴカードエフェクトエリアをカスタムする
-    private fun numberAreaEffect(matchPosition: Int, color: Color) {
+    private fun bingoAreaEffect(matchPosition: Int) {
         when ( matchPosition ) {
             1 -> {
                 bingoAreaI0J0.background = Background(
                     BackgroundFill(
-                        color,
+                        Color.ANTIQUEWHITE,
                         CornerRadii(10.0),
                         Insets.EMPTY
                     )
@@ -155,7 +114,7 @@ class BingoFXView: View(WINDOW_TITLE) {
             2 -> {
                 bingoAreaI0J1.background = Background(
                     BackgroundFill(
-                        color,
+                        Color.ANTIQUEWHITE,
                         CornerRadii(10.0),
                         Insets.EMPTY
                     )
@@ -164,7 +123,7 @@ class BingoFXView: View(WINDOW_TITLE) {
             3 -> {
                 bingoAreaI0J2.background = Background(
                     BackgroundFill(
-                        color,
+                        Color.ANTIQUEWHITE,
                         CornerRadii(10.0),
                         Insets.EMPTY
                     )
@@ -173,7 +132,7 @@ class BingoFXView: View(WINDOW_TITLE) {
             4 -> {
                 bingoAreaI1J0.background = Background(
                     BackgroundFill(
-                        color,
+                        Color.ANTIQUEWHITE,
                         CornerRadii(10.0),
                         Insets.EMPTY
                     )
@@ -182,7 +141,7 @@ class BingoFXView: View(WINDOW_TITLE) {
             5 -> {
                 bingoAreaI1J1.background = Background(
                     BackgroundFill(
-                        color,
+                        Color.ANTIQUEWHITE,
                         CornerRadii(10.0),
                         Insets.EMPTY
                     )
@@ -191,7 +150,7 @@ class BingoFXView: View(WINDOW_TITLE) {
             6 -> {
                 bingoAreaI1J2.background = Background(
                     BackgroundFill(
-                        color,
+                        Color.ANTIQUEWHITE,
                         CornerRadii(10.0),
                         Insets.EMPTY
                     )
@@ -200,7 +159,7 @@ class BingoFXView: View(WINDOW_TITLE) {
             7 -> {
                 bingoAreaI2J0.background = Background(
                     BackgroundFill(
-                        color,
+                        Color.ANTIQUEWHITE,
                         CornerRadii(10.0),
                         Insets.EMPTY
                     )
@@ -209,7 +168,7 @@ class BingoFXView: View(WINDOW_TITLE) {
             8 -> {
                 bingoAreaI2J1.background = Background(
                     BackgroundFill(
-                        color,
+                        Color.ANTIQUEWHITE,
                         CornerRadii(10.0),
                         Insets.EMPTY
                     )
@@ -218,7 +177,7 @@ class BingoFXView: View(WINDOW_TITLE) {
             9 -> {
                 bingoAreaI2J2.background = Background(
                     BackgroundFill(
-                        color,
+                        Color.ANTIQUEWHITE,
                         CornerRadii(10.0),
                         Insets.EMPTY
                     )
@@ -242,7 +201,6 @@ class BingoFXView: View(WINDOW_TITLE) {
     }
 
     init {
-        numberAreaEffect(100, Color.ANTIQUEWHITE)
         pushSelectNumberButton()
 
         bingoAreaI0J0.bind(bingoAreaI0J0Value)

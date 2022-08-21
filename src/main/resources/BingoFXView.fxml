@@ -173,7 +173,7 @@
                <children>
                   <ImageView fitHeight="210.0" fitWidth="215.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@bingo/image/garapon.jpeg" />
+                        <Image url="@image/garapon.jpeg" />
                      </image>
                   </ImageView>
                   <Label fx:id="result_selected_number" alignment="CENTER" contentDisplay="CENTER" prefHeight="117.0" prefWidth="212.0">

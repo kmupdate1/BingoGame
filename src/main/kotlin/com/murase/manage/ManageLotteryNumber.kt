@@ -1,6 +1,6 @@
-package com.murase.bingo.manage
+package com.murase.manage
 
-import com.murase.bingo.util.ArrayLotteryJackpot
+import com.murase.util.ArrayLotteryJackpot
 
 class ManageLotteryNumber {
     private val a = ArrayLotteryJackpot()
@@ -61,4 +61,3 @@ class ManageLotteryNumber {
         }
     }
 }
-
