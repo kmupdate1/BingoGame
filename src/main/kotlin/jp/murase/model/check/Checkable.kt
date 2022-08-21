@@ -2,7 +2,7 @@ package jp.murase.model.check
 
 // 出目の一致調査
 interface CheckableJackpot {
-    fun whereNumberExists(): Array<Int>
+    fun whereNumberExists(lotteryNumber: Int): ArrayList<Int>
 }
 
 // ビンゴ判定

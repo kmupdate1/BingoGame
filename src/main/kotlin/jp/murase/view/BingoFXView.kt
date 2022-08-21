@@ -21,6 +21,7 @@ class BingoFXView: View(WINDOW_TITLE) {
 
     private val createBingoCard: CreatableBingoCard = CreateBingoCard.getInstance()
     private val lotteryJackpot:  HitLotteryJackpot  = LotteryJackpot.getInstance()
+    private val checkJackpot:    CheckableJackpot   = CheckJackpot.getInstance(createBingoCard)
     private val checkBingo:      CheckableBingo     = CheckBingo.getInstance(lotteryJackpotManager)
 
     override val root: VBox by fxml(FXML_VIEW_RESOURCE)
@@ -78,8 +79,12 @@ class BingoFXView: View(WINDOW_TITLE) {
         resultSelectedNumberValue.value = "Jackpot : $lotteryNumber"
 
         // 出目の一致を判定するためのオブジェクト取得および、一致した際の位置一覧を取得
-        val checkJackpot: CheckableJackpot = CheckJackpot(lotteryNumber, createBingoCard)
-        val matchPositionArray: Array<Int> = checkJackpot.whereNumberExists()
+        val matchPositionArray: ArrayList<Int> = checkJackpot.whereNumberExists(lotteryNumber)
+
+        /*
+         * デバッグ
+         */
+        //for ( i in matchPositionArray ) println(i)
 
         for ( matchPosition in matchPositionArray ) {
             lotteryJackpotManager.setLotteryNumber(matchPosition)

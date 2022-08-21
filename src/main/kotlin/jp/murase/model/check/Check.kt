@@ -9,15 +9,18 @@ import jp.murase.model.game.CreatableBingoCard
 * 一致した場合は、一致した場所リストを返す。
 * */
 class CheckJackpot(
-    private val jackpotNumber: Int,
     private val bingoCard: CreatableBingoCard
 ): CheckableJackpot {
-    override fun whereNumberExists(): Array<Int> {
-        var positions: Array<Int> = arrayOf()
-        for ( i in (1..9) ) {
-           if ( bingoCard.getNumberOnBingoCard(i) == jackpotNumber ) {
+    companion object {
+        fun getInstance(bingoCard: CreatableBingoCard) = CheckJackpot(bingoCard)
+    }
+    override fun whereNumberExists(lotteryNumber: Int): ArrayList<Int> {
+        val positions: ArrayList<Int> = arrayListOf()
+        var index = 0
+        for ( i in (1..9)) {
+           if ( bingoCard.getNumberOnBingoCard(i) == lotteryNumber ) {
                bingoCard.getMainBingoCard()[i].hit = true
-               positions = arrayOf(i)
+               positions.add(index++, i)
            }
         }
         return positions
