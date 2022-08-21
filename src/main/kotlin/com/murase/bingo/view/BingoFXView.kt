@@ -3,12 +3,16 @@ package com.murase.bingo.view
 import com.murase.bingo.*
 import com.murase.bingo.manage.ManageLotteryNumber
 import com.murase.bingo.model.check.*
-import com.murase.bingo.model.effect.Effect
 import com.murase.bingo.model.game.*
 import javafx.beans.property.SimpleStringProperty
 import javafx.fxml.FXML
+import javafx.geometry.Insets
 import javafx.scene.control.Label
+import javafx.scene.layout.Background
+import javafx.scene.layout.BackgroundFill
+import javafx.scene.layout.CornerRadii
 import javafx.scene.layout.VBox
+import javafx.scene.paint.Color
 import tornadofx.*
 import kotlin.system.exitProcess
 
@@ -19,7 +23,7 @@ class BingoFXView: View(WINDOW_TITLE) {
     private val lotteryJackpot:  HitLotteryJackpot  = LotteryJackpot.getInstance()
     private val checkBingo:      CheckableBingo     = CheckBingo.getInstance(lotteryJackpotManager)
 
-    private val effectNumber = Effect.getInstance()
+    //private val effectNumber = Effect.getInstance()
 
     override val root: VBox by fxml(FXML_VIEW_RESOURCE)
 
@@ -66,19 +70,6 @@ class BingoFXView: View(WINDOW_TITLE) {
     private val resultSelectedNumberValue = SimpleStringProperty()
     private val bingoResultValue          = SimpleStringProperty()
 
-    // ビンゴの準備する
-    private fun pushSelectNumberButton() {
-        // ビンゴカード作る
-        bingoAreaI0J0Value.value = createBingoCard.getNumberOnBingoCard(1).toString()
-        bingoAreaI0J1Value.value = createBingoCard.getNumberOnBingoCard(2).toString()
-        bingoAreaI0J2Value.value = createBingoCard.getNumberOnBingoCard(3).toString()
-        bingoAreaI1J0Value.value = createBingoCard.getNumberOnBingoCard(4).toString()
-        bingoAreaI1J1Value.value = createBingoCard.getNumberOnBingoCard(5).toString()
-        bingoAreaI1J2Value.value = createBingoCard.getNumberOnBingoCard(6).toString()
-        bingoAreaI2J0Value.value = createBingoCard.getNumberOnBingoCard(7).toString()
-        bingoAreaI2J1Value.value = createBingoCard.getNumberOnBingoCard(8).toString()
-        bingoAreaI2J2Value.value = createBingoCard.getNumberOnBingoCard(9).toString()
-    }
 
     // ガラポンボタン押す
     @FXML
@@ -96,8 +87,13 @@ class BingoFXView: View(WINDOW_TITLE) {
             lotteryJackpotManager.setLotteryNumber(matchPosition)
 
             // エフェクトつける
+            numberAreaEffect(matchPosition, Color.AQUA)
+/*
+            val bingoAreaObj =
+                listBingoAreaObj.getBingoAreaObj(matchPosition).id
+            println(bingoAreaObj)
+*/
 
-            //effectNumber.setMatchPosition(matchPosition)
         }
 
         // ビンゴかチェックする
@@ -107,14 +103,16 @@ class BingoFXView: View(WINDOW_TITLE) {
             //bingoResult.style = "-fx-background-color: #BFFFFE; -fx-font-size: 50px;"
         } else {
             bingoResultValue.value = NO
-            bingoAreaI0J0.style = "-fx-background-color: #2f6f10;"
-            bingoAreaI1J0.style = "-fx-background-color: #2f6f10;"
-            bingoAreaI2J0.style = "-fx-background-color: #2f6f10;"
-            bingoAreaI0J2.style = "-fx-background-color: #2f6f10;"
-            bingoAreaI1J2.style = "-fx-background-color: #2f6f10;"
-            bingoAreaI2J2.style = "-fx-background-color: #2f6f10;"
-            bingoAreaI0J1.style = "-fx-background-color: #2f6f10;"
-            bingoAreaI2J1.style = "-fx-background-color: #2f6f10;"
+/*
+            bingoAreaI0J0.style = "-fx-background-color: #f4c1f7;"
+            bingoAreaI1J0.style = "-fx-background-color: #f4c1f7;"
+            bingoAreaI2J0.style = "-fx-background-color: #f4c1f7;"
+            bingoAreaI0J2.style = "-fx-background-color: #f4c1f7;"
+            bingoAreaI1J2.style = "-fx-background-color: #f4c1f7;"
+            bingoAreaI2J2.style = "-fx-background-color: #f4c1f7;"
+            bingoAreaI0J1.style = "-fx-background-color: #f4c1f7;"
+            bingoAreaI2J1.style = "-fx-background-color: #f4c1f7;"
+*/
         }
     }
 
@@ -124,7 +122,127 @@ class BingoFXView: View(WINDOW_TITLE) {
         exitProcess(0)
     }
 
+/*
+    // ビンゴエリアのオブジェクトリスト用意
+    private val listBingoAreaObj =
+        ListBingoAreaObj.getInstance(
+            mapOf(
+                1 to bingoAreaI0J0,
+                2 to bingoAreaI0J1,
+                3 to bingoAreaI0J2,
+                4 to bingoAreaI1J0,
+                5 to bingoAreaI1J1,
+                6 to bingoAreaI1J2,
+                7 to bingoAreaI2J0,
+                8 to bingoAreaI2J1,
+                9 to bingoAreaI2J2
+            )
+        )
+*/
+
+    // ビンゴカードエフェクトエリアをカスタムする
+    private fun numberAreaEffect(matchPosition: Int, color: Color) {
+        when ( matchPosition ) {
+            1 -> {
+                bingoAreaI0J0.background = Background(
+                    BackgroundFill(
+                        color,
+                        CornerRadii(10.0),
+                        Insets.EMPTY
+                    )
+                )
+            }
+            2 -> {
+                bingoAreaI0J1.background = Background(
+                    BackgroundFill(
+                        color,
+                        CornerRadii(10.0),
+                        Insets.EMPTY
+                    )
+                )
+            }
+            3 -> {
+                bingoAreaI0J2.background = Background(
+                    BackgroundFill(
+                        color,
+                        CornerRadii(10.0),
+                        Insets.EMPTY
+                    )
+                )
+            }
+            4 -> {
+                bingoAreaI1J0.background = Background(
+                    BackgroundFill(
+                        color,
+                        CornerRadii(10.0),
+                        Insets.EMPTY
+                    )
+                )
+            }
+            5 -> {
+                bingoAreaI1J1.background = Background(
+                    BackgroundFill(
+                        color,
+                        CornerRadii(10.0),
+                        Insets.EMPTY
+                    )
+                )
+            }
+            6 -> {
+                bingoAreaI1J2.background = Background(
+                    BackgroundFill(
+                        color,
+                        CornerRadii(10.0),
+                        Insets.EMPTY
+                    )
+                )
+            }
+            7 -> {
+                bingoAreaI2J0.background = Background(
+                    BackgroundFill(
+                        color,
+                        CornerRadii(10.0),
+                        Insets.EMPTY
+                    )
+                )
+            }
+            8 -> {
+                bingoAreaI2J1.background = Background(
+                    BackgroundFill(
+                        color,
+                        CornerRadii(10.0),
+                        Insets.EMPTY
+                    )
+                )
+            }
+            9 -> {
+                bingoAreaI2J2.background = Background(
+                    BackgroundFill(
+                        color,
+                        CornerRadii(10.0),
+                        Insets.EMPTY
+                    )
+                )
+            }
+        }
+    }
+
+    // ビンゴの準備する
+    private fun pushSelectNumberButton() {
+        // ビンゴカード作る
+        bingoAreaI0J0Value.value = createBingoCard.getNumberOnBingoCard(1).toString()
+        bingoAreaI0J1Value.value = createBingoCard.getNumberOnBingoCard(2).toString()
+        bingoAreaI0J2Value.value = createBingoCard.getNumberOnBingoCard(3).toString()
+        bingoAreaI1J0Value.value = createBingoCard.getNumberOnBingoCard(4).toString()
+        bingoAreaI1J1Value.value = createBingoCard.getNumberOnBingoCard(5).toString()
+        bingoAreaI1J2Value.value = createBingoCard.getNumberOnBingoCard(6).toString()
+        bingoAreaI2J0Value.value = createBingoCard.getNumberOnBingoCard(7).toString()
+        bingoAreaI2J1Value.value = createBingoCard.getNumberOnBingoCard(8).toString()
+        bingoAreaI2J2Value.value = createBingoCard.getNumberOnBingoCard(9).toString()
+    }
+
     init {
+        numberAreaEffect(100, Color.ANTIQUEWHITE)
         pushSelectNumberButton()
 
         bingoAreaI0J0.bind(bingoAreaI0J0Value)
