@@ -48,15 +48,19 @@ class CheckBingo(
         var status = -1
         val managerList = manager.getManageList()
         for (map in managerList) {
+            // デバッグ
             println("size:${map.value.getSize()}, lene:${map.key}")
             sizeOfArray.add(map.value.getSize())
         }
+
+        // デバッグ
         println("---------------------------------------------------------------")
         var total = 0
         for (size in sizeOfArray) {
             total += size
         }
 
+        // デバッグ
         println("total size:$total")
         for ( bingoCard in createBingoCard.getMainBingoCardList() ) println("card hit is ${bingoCard.hit}")
 

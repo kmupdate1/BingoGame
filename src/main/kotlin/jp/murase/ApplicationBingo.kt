@@ -34,11 +34,15 @@ const val FXML_VIEW_RESOURCE = "/BingoFXView.fxml"
 const val MIN = 0
 const val MAX = 99
 
-const val NO      = "umm..."
-const val OK      = "Wow"
+// ビンゴの状態を結果として現す
+const val UMM     = "umm..."
+const val WOW     = "Wow"
 const val REACH   = "¡REACH!"
 const val BINGO   = "¡BINGO!"
 const val PERFECT = "¡PERFECT!"
+
+// other
+const val JACKPOT = "Jackpot"
 
 fun random(): Int = (MIN..MAX).random()
 

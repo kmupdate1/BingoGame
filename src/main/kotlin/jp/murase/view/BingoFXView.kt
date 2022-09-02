@@ -7,6 +7,7 @@ import jp.murase.model.game.*
 import javafx.beans.property.SimpleStringProperty
 import javafx.fxml.FXML
 import javafx.geometry.Insets
+import javafx.geometry.Pos
 import javafx.scene.control.Button
 import javafx.scene.control.Label
 import javafx.scene.layout.Background
@@ -70,24 +71,23 @@ class BingoFXView(
     // 出目および結果表示エリアを論理的に初期化
     private val resultSelectedNumberValue = SimpleStringProperty()
     private val bingoResultValue          = SimpleStringProperty()
-/*
-    private val selectRandomNumberValue = SimpleStringProperty()
-    private val endBingoGameValue       = SimpleStringProperty()
-*/
 
     // ガラポンボタン押す
     @FXML
     fun garaPon() {
 
-        // ガラポン番号の取得および、出目の表示
+        // ガラポン番号の取得および、出目の表示する
         val lotteryNumber: Int = lotteryJackpot.getLotteryJackpot()
-        resultSelectedNumber.font = Font.font(20.0)
-        resultSelectedNumberValue.value = "Jackpot : $lotteryNumber"
+        resultSelectedNumber.font = Font.font(30.0)
+        resultSelectedNumber.alignment = Pos.CENTER_LEFT
+        resultSelectedNumberValue.value = "$JACKPOT : $lotteryNumber"
 
-        // 出目の一致を判定するためのオブジェクト取得および、一致した際の位置一覧を取得
+        // 出目の一致を判定するためのオブジェクト取得および、一致した際の位置一覧を取得する
         val matchPositionArray: ArrayList<Int> = checkJackpot.whereNumberExists(lotteryNumber)
 
+        // ビンゴカード上でヒットした位置はtrueに変更かつ、エフェクトつける
         for ( matchPosition in matchPositionArray ) {
+            // ヒット位置はtrueに変更する
             lotteryJackpotManager.setLotteryNumber(matchPosition)
             createBingoCard.getMainBingoCard(matchPosition).hit = true
 
@@ -99,7 +99,7 @@ class BingoFXView(
         when ( checkBingo.status() ) {
             BINGO_STATUS_OK -> {
                 bingoResult.font = Font.font(30.0)
-                bingoResultValue.value = OK
+                bingoResultValue.value = WOW
             }
             BINGO_STATUS_REACH -> {
                 bingoResult.font = Font.font(30.0)
@@ -114,7 +114,7 @@ class BingoFXView(
                 bingoResultValue.value = PERFECT
             }
             else -> {
-                bingoResultValue.value = NO
+                bingoResultValue.value = UMM
             }
         }
     }
@@ -122,7 +122,7 @@ class BingoFXView(
     @FXML
     fun reTry() {
         println("もう一回")
-        // systemManager.initView()
+        // initView()
     }
 
     // おわりボタン押す
@@ -229,10 +229,24 @@ class BingoFXView(
         bingoAreaI2J1Value.value = createBingoCard.getNumberOnBingoCard(8).toString()
         bingoAreaI2J2Value.value = createBingoCard.getNumberOnBingoCard(9).toString()
 
+        selectRandomNumber.background = Background(
+            BackgroundFill(
+                Color.LIGHTBLUE,
+                CornerRadii(100.0),
+                Insets.EMPTY
+            )
+        )
         endBingoGame.background = Background(
             BackgroundFill(
-                Color.GRAY,
-                CornerRadii(5.0),
+                Color.LIGHTPINK,
+                CornerRadii(100.0),
+                Insets.EMPTY
+            )
+        )
+        reTry.background = Background(
+            BackgroundFill(
+                Color.ANTIQUEWHITE,
+                CornerRadii(100.0),
                 Insets.EMPTY
             )
         )
@@ -252,6 +266,8 @@ class BingoFXView(
         bingoAreaI2J2.bind(bingoAreaI2J2Value)
 
         resultSelectedNumber.bind(resultSelectedNumberValue)
+        resultSelectedNumber.text = JACKPOT
+
         bingoResult.bind(bingoResultValue)
 
 /*

@@ -16,8 +16,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<VBox xmlns="http://javafx.com/javafx/18"
-      xmlns:fx="http://javafx.com/fxml/1">
+<VBox xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label alignment="BOTTOM_CENTER" prefHeight="62.0" prefWidth="609.0" text="目指せビンゴ！" textAlignment="CENTER" textFill="#91b52d">
          <font>
@@ -176,16 +175,16 @@
                         <Image url="@image/garapon.jpeg" />
                      </image>
                   </ImageView>
-                  <Label fx:id="result_selected_number" alignment="CENTER" contentDisplay="CENTER" prefHeight="105.0" prefWidth="191.0">
+                  <Label fx:id="result_selected_number" alignment="CENTER" contentDisplay="CENTER" prefHeight="105.0" prefWidth="191.0" text="Jackpot">
                      <font>
                         <Font size="30.0" />
                      </font>
                   </Label>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="select_random_number" alignment="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#garaPon" prefHeight="58.0" prefWidth="133.0" text="&gt;&gt;ガラポン&lt;&lt;">
+                        <Button fx:id="select_random_number" alignment="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#garaPon" prefHeight="44.0" prefWidth="191.0" text="&gt;&gt;ガラポン&lt;&lt;">
                            <font>
-                              <Font name="Apple Braille" size="20.0" />
+                              <Font name="Apple Braille" size="18.0" />
                            </font>
                            <textFill>
                               <RadialGradient centerX="0.5" centerY="0.5475059382422802" focusDistance="-0.4624277456647399" radius="0.057803468208092484">
@@ -207,14 +206,20 @@
                               <Insets left="2.0" right="2.0" />
                            </padding>
                         </Button>
-                        <Button fx:id="end_bingo_game" cancelButton="true" mnemonicParsing="false" onAction="#endBingoGame" prefHeight="71.0" prefWidth="74.0" text="おわり">
+                     </children>
+                  </HBox>
+                  <Pane prefHeight="0.0" prefWidth="191.0" />
+                  <HBox prefHeight="49.0" prefWidth="191.0">
+                     <children>
+                        <Button fx:id="retry_bingo_game" mnemonicParsing="false" onAction="#reTry" prefHeight="41.0" prefWidth="106.0" text="もう一回" />
+                        <Pane prefHeight="41.0" prefWidth="9.0" />
+                        <Button fx:id="end_bingo_game" cancelButton="true" mnemonicParsing="false" onAction="#endBingoGame" prefHeight="41.0" prefWidth="76.0" text="おわり">
                            <padding>
                               <Insets left="2.0" right="2.0" />
                            </padding>
                         </Button>
                      </children>
                   </HBox>
-                  <Button fx:id="retry_bingo_game" mnemonicParsing="false" prefHeight="15.0" prefWidth="191.0" text="もう一回" onAction="#reTry"/>
                </children>
             </VBox>
             <Pane prefHeight="318.0" prefWidth="19.0" />
