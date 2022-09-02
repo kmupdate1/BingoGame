@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -18,11 +19,16 @@
 
 <VBox xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label alignment="BOTTOM_CENTER" prefHeight="62.0" prefWidth="609.0" text="目指せビンゴ！" textAlignment="CENTER" textFill="#91b52d">
-         <font>
-            <Font name="Apple Braille Outline 6 Dot" size="35.0" />
-         </font>
-      </Label>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="128.0" prefWidth="409.0" text="目指せビンゴ！" textAlignment="CENTER" textFill="#91b52d">
+               <font>
+                  <Font name="Apple Braille Outline 6 Dot" size="35.0" />
+               </font>
+            </Label>
+            <CheckBox mnemonicParsing="false" prefHeight="126.0" prefWidth="207.0" text="自分でビンゴカードを作る" />
+         </children>
+      </HBox>
       <Pane prefHeight="7.0" prefWidth="609.0" />
       <HBox>
          <children>
