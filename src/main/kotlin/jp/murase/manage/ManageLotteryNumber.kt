@@ -2,6 +2,14 @@ package jp.murase.manage
 
 import jp.murase.util.ArrayLotteryJackpot
 
+const val HORIZONTAL_LENE_0  = "horizontal_lene0"
+const val HORIZONTAL_LENE_1  = "horizontal_lene1"
+const val HORIZONTAL_LENE_2  = "horizontal_lene2"
+const val VERTICAL_LENE_0    = "vertical_lene0"
+const val VERTICAL_LENE_1    = "vertical_lene1"
+const val VERTICAL_LENE_2    = "vertical_lene2"
+const val RISING_RIGHT_LENE  = "rising_right_lene"
+const val FALLING_RIGHT_LENE = "falling_right_lene"
 class ManageLotteryNumber {
     private val a = ArrayLotteryJackpot()
     private val b = ArrayLotteryJackpot()
@@ -12,7 +20,16 @@ class ManageLotteryNumber {
     private val g = ArrayLotteryJackpot()
     private val h = ArrayLotteryJackpot()
 
-    fun getManageList() = arrayOf(a, b, c, d, e, f, g, h)
+    fun getManageList() = mapOf(
+        HORIZONTAL_LENE_0   to a,
+        HORIZONTAL_LENE_1   to b,
+        HORIZONTAL_LENE_2   to c,
+        VERTICAL_LENE_0     to d,
+        VERTICAL_LENE_1     to e,
+        VERTICAL_LENE_2     to f,
+        FALLING_RIGHT_LENE  to g,
+        RISING_RIGHT_LENE   to h
+    )
 
     fun setLotteryNumber(position: Int) {
         when ( position ) {

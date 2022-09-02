@@ -2,6 +2,8 @@ package jp.murase.model.check
 
 import jp.murase.manage.ManageLotteryNumber
 import jp.murase.model.game.CreatableBingoCard
+import jp.murase.model.game.CreateBingoCard
+
 
 /*
 * ビューの方で出目を渡してくれる。
@@ -19,7 +21,7 @@ class CheckJackpot(
         var index = 0
         for ( i in (1..9)) {
            if ( bingoCard.getNumberOnBingoCard(i) == lotteryNumber ) {
-               bingoCard.getMainBingoCard()[i].hit = true
+               bingoCard.getMainBingoCardList()[i].hit = true
                positions.add(index++, i)
            }
         }
@@ -32,18 +34,37 @@ class CheckJackpot(
 * 毎回の出目毎にチェックする。
 * */
 class CheckBingo(
-    private val manager: ManageLotteryNumber
+    private val manager: ManageLotteryNumber,
+    private val createBingoCard: CreatableBingoCard
 ): CheckableBingo {
     companion object {
-        fun getInstance(manager: ManageLotteryNumber) = CheckBingo(manager)
+        fun getInstance(
+            manager: ManageLotteryNumber,
+            createBingoCard: CreatableBingoCard) = CheckBingo(manager, createBingoCard)
     }
 
-    override fun isBingo(): Boolean {
-        var isBingo = false
+    override fun status(): Int {
+        val sizeOfArray = arrayListOf<Int>()
+        var status = -1
         val managerList = manager.getManageList()
-        for ( array in managerList ) {
-            if ( array.getSize() > 2 ) isBingo = true
+        for (map in managerList) {
+            println("size:${map.value.getSize()}, lene:${map.key}")
+            sizeOfArray.add(map.value.getSize())
         }
-        return isBingo
+        println("---------------------------------------------------------------")
+        var total = 0
+        for (size in sizeOfArray) {
+            total += size
+        }
+
+        println("total size:$total")
+        for ( bingoCard in createBingoCard.getMainBingoCardList() ) println("card hit is ${bingoCard.hit}")
+
+        if (total in 2 .. 3)    status = BINGO_STATUS_OK
+        if (sizeOfArray.contains(2)) status = BINGO_STATUS_REACH
+        if (sizeOfArray.contains(3)) status = BINGO_STATUS_BINGO
+        if (total > 23)              status = BINGO_STATUS_PERFECT
+
+        return status
     }
 }

@@ -22,7 +22,9 @@ class CreateBingoCard: CreatableBingoCard {
         BingoCard(9, random(), false)
     )
 
-    override fun getMainBingoCard(): List<BingoCard> = mainBingoCard
+    override fun getMainBingoCardList(): List<BingoCard> = mainBingoCard
+
+    override fun getMainBingoCard(position: Int): BingoCard = mainBingoCard[position]
 
     override fun getNumberOnBingoCard(position: Int): Int {
         return if ( position in 1..9 ) {

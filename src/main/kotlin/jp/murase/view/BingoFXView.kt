@@ -7,22 +7,27 @@ import jp.murase.model.game.*
 import javafx.beans.property.SimpleStringProperty
 import javafx.fxml.FXML
 import javafx.geometry.Insets
+import javafx.scene.control.Button
 import javafx.scene.control.Label
 import javafx.scene.layout.Background
 import javafx.scene.layout.BackgroundFill
 import javafx.scene.layout.CornerRadii
 import javafx.scene.layout.VBox
 import javafx.scene.paint.Color
+import javafx.scene.text.Font
 import tornadofx.*
 import kotlin.system.exitProcess
 
-class BingoFXView: View(WINDOW_TITLE) {
+class BingoFXView(
+    private val systemManager: ApplicationManager = ApplicationManager
+): View(WINDOW_TITLE) {
+
     private val lotteryJackpotManager = ManageLotteryNumber()
 
     private val createBingoCard: CreatableBingoCard = CreateBingoCard.getInstance()
-    private val lotteryJackpot:  HitLotteryJackpot  = LotteryJackpot.getInstance()
-    private val checkJackpot:    CheckableJackpot   = CheckJackpot.getInstance(createBingoCard)
-    private val checkBingo:      CheckableBingo     = CheckBingo.getInstance(lotteryJackpotManager)
+    private val lotteryJackpot: HitLotteryJackpot   = LotteryJackpot.getInstance()
+    private val checkJackpot: CheckableJackpot      = CheckJackpot.getInstance(createBingoCard)
+    private val checkBingo: CheckableBingo          = CheckBingo.getInstance(lotteryJackpotManager, createBingoCard)
 
     override val root: VBox by fxml(FXML_VIEW_RESOURCE)
 
@@ -40,13 +45,10 @@ class BingoFXView: View(WINDOW_TITLE) {
     private val bingoAreaI2J1: Label by fxid(BINGO_AREA_I2J1)
     private val bingoAreaI2J2: Label by fxid(BINGO_AREA_I2J2)
 
-/*
-    // ガラポン回転ボタン
+    // ボタン
     private val selectRandomNumber: Button by fxid(SELECT_RANDOM_NUMBER)
-
-    // ビンゴゲーム終了ボタン
-    private val endBingoGame: Button by fxid(END_BINGO_GAME)
-*/
+    private val endBingoGame: Button       by fxid(END_BINGO_GAME)
+    private val reTry: Button              by fxid(RETRY_BINGO_GAME)
 
     // 出目表示エリア
     private val resultSelectedNumber: Label by fxid(RESULT_SELECTED_NUMBER)
@@ -68,7 +70,10 @@ class BingoFXView: View(WINDOW_TITLE) {
     // 出目および結果表示エリアを論理的に初期化
     private val resultSelectedNumberValue = SimpleStringProperty()
     private val bingoResultValue          = SimpleStringProperty()
-
+/*
+    private val selectRandomNumberValue = SimpleStringProperty()
+    private val endBingoGameValue       = SimpleStringProperty()
+*/
 
     // ガラポンボタン押す
     @FXML
@@ -76,33 +81,53 @@ class BingoFXView: View(WINDOW_TITLE) {
 
         // ガラポン番号の取得および、出目の表示
         val lotteryNumber: Int = lotteryJackpot.getLotteryJackpot()
+        resultSelectedNumber.font = Font.font(20.0)
         resultSelectedNumberValue.value = "Jackpot : $lotteryNumber"
 
         // 出目の一致を判定するためのオブジェクト取得および、一致した際の位置一覧を取得
         val matchPositionArray: ArrayList<Int> = checkJackpot.whereNumberExists(lotteryNumber)
 
-        /*
-         * デバッグ
-         */
-        //for ( i in matchPositionArray ) println(i)
-
         for ( matchPosition in matchPositionArray ) {
             lotteryJackpotManager.setLotteryNumber(matchPosition)
+            createBingoCard.getMainBingoCard(matchPosition).hit = true
 
             // エフェクトつける
             bingoAreaEffect(matchPosition)
         }
 
         // ビンゴかチェックする
-        val isBingo = checkBingo.isBingo()
-        if ( isBingo ) bingoResultValue.value = YES else bingoResultValue.value = NO
+        when ( checkBingo.status() ) {
+            BINGO_STATUS_OK -> {
+                bingoResult.font = Font.font(30.0)
+                bingoResultValue.value = OK
+            }
+            BINGO_STATUS_REACH -> {
+                bingoResult.font = Font.font(30.0)
+                bingoResultValue.value = REACH
+            }
+            BINGO_STATUS_BINGO -> {
+                bingoResult.font = Font.font(30.0)
+                bingoResultValue.value = BINGO
+            }
+            BINGO_STATUS_PERFECT -> {
+                bingoResult.font = Font.font(30.0)
+                bingoResultValue.value = PERFECT
+            }
+            else -> {
+                bingoResultValue.value = NO
+            }
+        }
+    }
+
+    @FXML
+    fun reTry() {
+        println("もう一回")
+        // systemManager.initView()
     }
 
     // おわりボタン押す
     @FXML
-    fun endBingoGame() {
-        exitProcess(0)
-    }
+    fun endBingoGame(): Nothing = exitProcess(0)
 
     // ビンゴカードエフェクトエリアをカスタムする
     private fun bingoAreaEffect(matchPosition: Int) {
@@ -110,7 +135,7 @@ class BingoFXView: View(WINDOW_TITLE) {
             1 -> {
                 bingoAreaI0J0.background = Background(
                     BackgroundFill(
-                        Color.ANTIQUEWHITE,
+                        Color.LIGHTBLUE,
                         CornerRadii(10.0),
                         Insets.EMPTY
                     )
@@ -119,7 +144,7 @@ class BingoFXView: View(WINDOW_TITLE) {
             2 -> {
                 bingoAreaI0J1.background = Background(
                     BackgroundFill(
-                        Color.ANTIQUEWHITE,
+                        Color.LIGHTBLUE,
                         CornerRadii(10.0),
                         Insets.EMPTY
                     )
@@ -128,7 +153,7 @@ class BingoFXView: View(WINDOW_TITLE) {
             3 -> {
                 bingoAreaI0J2.background = Background(
                     BackgroundFill(
-                        Color.ANTIQUEWHITE,
+                        Color.LIGHTBLUE,
                         CornerRadii(10.0),
                         Insets.EMPTY
                     )
@@ -137,7 +162,7 @@ class BingoFXView: View(WINDOW_TITLE) {
             4 -> {
                 bingoAreaI1J0.background = Background(
                     BackgroundFill(
-                        Color.ANTIQUEWHITE,
+                        Color.LIGHTBLUE,
                         CornerRadii(10.0),
                         Insets.EMPTY
                     )
@@ -146,7 +171,7 @@ class BingoFXView: View(WINDOW_TITLE) {
             5 -> {
                 bingoAreaI1J1.background = Background(
                     BackgroundFill(
-                        Color.ANTIQUEWHITE,
+                        Color.LIGHTBLUE,
                         CornerRadii(10.0),
                         Insets.EMPTY
                     )
@@ -155,7 +180,7 @@ class BingoFXView: View(WINDOW_TITLE) {
             6 -> {
                 bingoAreaI1J2.background = Background(
                     BackgroundFill(
-                        Color.ANTIQUEWHITE,
+                        Color.LIGHTBLUE,
                         CornerRadii(10.0),
                         Insets.EMPTY
                     )
@@ -164,7 +189,7 @@ class BingoFXView: View(WINDOW_TITLE) {
             7 -> {
                 bingoAreaI2J0.background = Background(
                     BackgroundFill(
-                        Color.ANTIQUEWHITE,
+                        Color.LIGHTBLUE,
                         CornerRadii(10.0),
                         Insets.EMPTY
                     )
@@ -173,7 +198,7 @@ class BingoFXView: View(WINDOW_TITLE) {
             8 -> {
                 bingoAreaI2J1.background = Background(
                     BackgroundFill(
-                        Color.ANTIQUEWHITE,
+                        Color.LIGHTBLUE,
                         CornerRadii(10.0),
                         Insets.EMPTY
                     )
@@ -182,7 +207,7 @@ class BingoFXView: View(WINDOW_TITLE) {
             9 -> {
                 bingoAreaI2J2.background = Background(
                     BackgroundFill(
-                        Color.ANTIQUEWHITE,
+                        Color.LIGHTBLUE,
                         CornerRadii(10.0),
                         Insets.EMPTY
                     )
@@ -192,7 +217,7 @@ class BingoFXView: View(WINDOW_TITLE) {
     }
 
     // ビンゴの準備する
-    private fun pushSelectNumberButton() {
+    private fun initWidgets() {
         // ビンゴカード作る
         bingoAreaI0J0Value.value = createBingoCard.getNumberOnBingoCard(1).toString()
         bingoAreaI0J1Value.value = createBingoCard.getNumberOnBingoCard(2).toString()
@@ -203,10 +228,18 @@ class BingoFXView: View(WINDOW_TITLE) {
         bingoAreaI2J0Value.value = createBingoCard.getNumberOnBingoCard(7).toString()
         bingoAreaI2J1Value.value = createBingoCard.getNumberOnBingoCard(8).toString()
         bingoAreaI2J2Value.value = createBingoCard.getNumberOnBingoCard(9).toString()
+
+        endBingoGame.background = Background(
+            BackgroundFill(
+                Color.GRAY,
+                CornerRadii(5.0),
+                Insets.EMPTY
+            )
+        )
     }
 
     init {
-        pushSelectNumberButton()
+        initWidgets()
 
         bingoAreaI0J0.bind(bingoAreaI0J0Value)
         bingoAreaI0J1.bind(bingoAreaI0J1Value)
@@ -220,5 +253,10 @@ class BingoFXView: View(WINDOW_TITLE) {
 
         resultSelectedNumber.bind(resultSelectedNumberValue)
         bingoResult.bind(bingoResultValue)
+
+/*
+        selectRandomNumber.bind(selectRandomNumberValue)
+        endBingoGame.bind(endBingoGameValue)
+*/
     }
 }

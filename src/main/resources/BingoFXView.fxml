@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.SepiaTone?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -17,7 +16,8 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<VBox xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<VBox xmlns="http://javafx.com/javafx/18"
+      xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label alignment="BOTTOM_CENTER" prefHeight="62.0" prefWidth="609.0" text="目指せビンゴ！" textAlignment="CENTER" textFill="#91b52d">
          <font>
@@ -171,19 +171,19 @@
             <Pane prefHeight="318.0" prefWidth="19.0" />
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <ImageView fitHeight="210.0" fitWidth="215.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="189.0" fitWidth="211.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@image/garapon.jpeg" />
                      </image>
                   </ImageView>
-                  <Label fx:id="result_selected_number" alignment="CENTER" contentDisplay="CENTER" prefHeight="117.0" prefWidth="212.0">
+                  <Label fx:id="result_selected_number" alignment="CENTER" contentDisplay="CENTER" prefHeight="105.0" prefWidth="191.0">
                      <font>
                         <Font size="30.0" />
                      </font>
                   </Label>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="select_random_number" alignment="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#garaPon" prefHeight="71.0" prefWidth="149.0" text="&gt;&gt;ガラポン&lt;&lt;">
+                        <Button fx:id="select_random_number" alignment="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#garaPon" prefHeight="58.0" prefWidth="133.0" text="&gt;&gt;ガラポン&lt;&lt;">
                            <font>
                               <Font name="Apple Braille" size="20.0" />
                            </font>
@@ -214,6 +214,7 @@
                         </Button>
                      </children>
                   </HBox>
+                  <Button fx:id="retry_bingo_game" mnemonicParsing="false" prefHeight="15.0" prefWidth="191.0" text="もう一回" onAction="#reTry"/>
                </children>
             </VBox>
             <Pane prefHeight="318.0" prefWidth="19.0" />
