@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -17,163 +16,37 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<VBox xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="540.0" prefWidth="645.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox prefHeight="100.0" prefWidth="200.0">
-         <children>
-            <Label alignment="CENTER" prefHeight="128.0" prefWidth="409.0" text="目指せビンゴ！" textAlignment="CENTER" textFill="#91b52d">
-               <font>
-                  <Font name="Apple Braille Outline 6 Dot" size="35.0" />
-               </font>
-            </Label>
-            <CheckBox mnemonicParsing="false" prefHeight="126.0" prefWidth="207.0" text="自分でビンゴカードを作る" />
-         </children>
-      </HBox>
+      <Label fx:id="title_area" alignment="CENTER" prefHeight="68.0" prefWidth="658.0" text="ビンゴゲーム" textAlignment="CENTER" textFill="RED">
+         <font>
+            <Font name="Apple Braille Outline 6 Dot" size="35.0" />
+         </font>
+      </Label>
       <Pane prefHeight="7.0" prefWidth="609.0" />
       <HBox>
          <children>
-            <Pane prefHeight="318.0" prefWidth="9.0" />
-            <GridPane alignment="CENTER" focusTraversable="true" prefHeight="318.0" prefWidth="355.0">
+            <Pane prefHeight="386.0" prefWidth="60.0" />
+            <GridPane fx:id="grid_pane" alignment="CENTER" focusTraversable="true" prefHeight="386.0" prefWidth="471.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
-               <children>
-                  <Label fx:id="bingo_area_i0j0" alignment="CENTER" prefHeight="140.0" prefWidth="120.0" textAlignment="CENTER">
-                     <GridPane.margin>
-                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                     </GridPane.margin>
-                     <padding>
-                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                     </padding>
-                     <font>
-                        <Font name="Apple Braille" size="50.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="bingo_area_i0j1" alignment="CENTER" prefHeight="140.0" prefWidth="120.0" textAlignment="CENTER" GridPane.columnIndex="1">
-                     <GridPane.margin>
-                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                     </GridPane.margin>
-                     <padding>
-                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                     </padding>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <font>
-                        <Font name="Apple Braille" size="50.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="bingo_area_i0j2" alignment="CENTER" prefHeight="140.0" prefWidth="120.0" textAlignment="CENTER" GridPane.columnIndex="2">
-                     <GridPane.margin>
-                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                     </GridPane.margin>
-                     <padding>
-                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                     </padding>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <font>
-                        <Font name="Apple Braille" size="50.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="bingo_area_i1j0" alignment="CENTER" prefHeight="140.0" prefWidth="120.0" textAlignment="CENTER" GridPane.rowIndex="1">
-                     <GridPane.margin>
-                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                     </GridPane.margin>
-                     <padding>
-                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                     </padding>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <font>
-                        <Font name="Apple Braille" size="50.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="bingo_area_i1j1" alignment="CENTER" prefHeight="140.0" prefWidth="120.0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <GridPane.margin>
-                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                     </GridPane.margin>
-                     <padding>
-                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                     </padding>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <font>
-                        <Font name="Apple Braille" size="50.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="bingo_area_i1j2" alignment="CENTER" prefHeight="140.0" prefWidth="120.0" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                     <GridPane.margin>
-                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                     </GridPane.margin>
-                     <padding>
-                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                     </padding>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <font>
-                        <Font name="Apple Braille" size="50.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="bingo_area_i2j0" alignment="CENTER" prefHeight="140.0" prefWidth="120.0" textAlignment="CENTER" GridPane.rowIndex="2">
-                     <GridPane.margin>
-                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                     </GridPane.margin>
-                     <padding>
-                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                     </padding>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <font>
-                        <Font name="Apple Braille" size="50.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="bingo_area_i2j1" alignment="CENTER" prefHeight="140.0" prefWidth="120.0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <GridPane.margin>
-                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                     </GridPane.margin>
-                     <padding>
-                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                     </padding>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <font>
-                        <Font name="Apple Braille" size="50.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="bingo_area_i2j2" alignment="CENTER" prefHeight="140.0" prefWidth="120.0" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                     <GridPane.margin>
-                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                     </GridPane.margin>
-                     <padding>
-                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-                     </padding>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <font>
-                        <Font name="Apple Braille" size="50.0" />
-                     </font>
-                  </Label>
-               </children>
                <opaqueInsets>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="5.0" />
                </opaqueInsets>
             </GridPane>
-            <Pane prefHeight="318.0" prefWidth="19.0" />
+            <Pane prefHeight="386.0" prefWidth="68.0" />
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <ImageView fitHeight="189.0" fitWidth="211.0" pickOnBounds="true" preserveRatio="true">
@@ -181,25 +54,21 @@
                         <Image url="@image/garapon.jpeg" />
                      </image>
                   </ImageView>
-                  <Label fx:id="result_selected_number" alignment="CENTER" contentDisplay="CENTER" prefHeight="105.0" prefWidth="191.0" text="Jackpot">
+                  <Label fx:id="jackpot_number" alignment="CENTER" contentDisplay="CENTER" prefHeight="105.0" prefWidth="191.0">
                      <font>
                         <Font size="30.0" />
                      </font>
                   </Label>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <Pane prefHeight="15.0" prefWidth="191.0" />
+                  <HBox prefHeight="55.0" prefWidth="191.0">
                      <children>
-                        <Button fx:id="select_random_number" alignment="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#garaPon" prefHeight="44.0" prefWidth="191.0" text="&gt;&gt;ガラポン&lt;&lt;">
+                        <Button fx:id="button_jackpot" alignment="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#jackpot" prefHeight="44.0" prefWidth="191.0" text="&gt;&gt;ガラポン&lt;&lt;">
                            <font>
                               <Font name="Apple Braille" size="18.0" />
                            </font>
                            <textFill>
                               <RadialGradient centerX="0.5" centerY="0.5475059382422802" focusDistance="-0.4624277456647399" radius="0.057803468208092484">
                                  <stops>
-                                    <Stop>
-                                       <color>
-                                          <Color />
-                                       </color>
-                                    </Stop>
                                     <Stop offset="1.0">
                                        <color>
                                           <Color red="0.5789473652839661" green="0.2224658876657486" blue="0.2224658876657486" />
@@ -217,9 +86,9 @@
                   <Pane prefHeight="0.0" prefWidth="191.0" />
                   <HBox prefHeight="49.0" prefWidth="191.0">
                      <children>
-                        <Button fx:id="retry_bingo_game" mnemonicParsing="false" onAction="#reTry" prefHeight="41.0" prefWidth="106.0" text="もう一回" />
+                        <Button fx:id="button_retry" mnemonicParsing="false" onAction="#reTry" prefHeight="41.0" prefWidth="106.0" text="もう一回" />
                         <Pane prefHeight="41.0" prefWidth="9.0" />
-                        <Button fx:id="end_bingo_game" cancelButton="true" mnemonicParsing="false" onAction="#endBingoGame" prefHeight="41.0" prefWidth="76.0" text="おわり">
+                        <Button fx:id="button_end" cancelButton="true" mnemonicParsing="false" onAction="#endGame" prefHeight="41.0" prefWidth="76.0" text="おわり">
                            <padding>
                               <Insets left="2.0" right="2.0" />
                            </padding>
@@ -228,13 +97,16 @@
                   </HBox>
                </children>
             </VBox>
-            <Pane prefHeight="318.0" prefWidth="19.0" />
+            <Pane prefHeight="386.0" prefWidth="0.0">
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin></Pane>
          </children>
       </HBox>
       <Pane prefHeight="13.0" prefWidth="609.0" />
-      <Label fx:id="bingo_result" alignment="CENTER" prefHeight="74.0" prefWidth="609.0" textAlignment="CENTER">
+      <Label fx:id="bingo_result" alignment="CENTER" prefHeight="63.0" prefWidth="663.0" textAlignment="CENTER">
          <font>
-            <Font name="System Italic" size="50.0" />
+            <Font name="System Italic" size="30.0" />
          </font>
       </Label>
    </children>
